@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const checkCell = row.insertCell();
             const taskCell = row.insertCell();
             const doneCell = row.insertCell();
-    
+
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.checked = task.done;
@@ -76,16 +76,28 @@ document.addEventListener('DOMContentLoaded', () => {
             challengeDone.checked = true;
             event.preventDefault();
             confettiImage.style.display = 'block';
+            // Konfetti nach 3 Sekunden ausblenden
+            setTimeout(() => {
+                confettiImage.style.display = 'none';
+                challengeDone.checked = false; // Optional: Checkbox zurücksetzen
+            }, 3000);
         }
     });
 
-    challengeDone.addEventListener('change', () => {
+    challengeDone.addEventListener('change', handleChallengeDone);
+
+    function handleChallengeDone() {
         if (challengeDone.checked) {
             confettiImage.style.display = 'block';
+            // Konfetti nach 3 Sekunden ausblenden
+            setTimeout(() => {
+                confettiImage.style.display = 'none';
+                challengeDone.checked = false; // Optional: Checkbox zurücksetzen
+            }, 3000);
         } else {
             confettiImage.style.display = 'none';
         }
-    });
+    }
 
     renderTasks();
 });

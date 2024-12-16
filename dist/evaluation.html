@@ -14,18 +14,16 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start; /* Nach oben ausrichten */
-            padding-top: 20px; /* Abstand von oben */
-            height: 100vh; /* Höhe 100% des Viewports */
+            height: 100vh;
             margin: 0;
             text-align: center;
         }
         h1 {
             font-size: 3em; /* Größe der Überschrift */
-            margin: 0 0 20px; /* Entferne oberen Rand, falls vorhanden */
+            margin-bottom: 20px; /* Abstand nach unten */
         }
         canvas {
             max-width: 600px; /* Maximale Breite des Diagramms */
-            height: 300px; /* Feste Höhe für das Diagramm */
             margin: 20px; /* Abstand */
         }
         #back-button {
@@ -37,15 +35,35 @@
             border-radius: 5px; /* Abgerundete Ecken */
             cursor: pointer; /* Zeiger bei Hover */
         }
+        #quote-container {
+            margin-left: 30px; /* Abstand zum Diagramm */
+            text-align: left; /* Text links ausrichten */
+            background-color: rgba(255, 255, 255, 0.1); /* Transparenter Hintergrund */
+            border: 2px solid #fff; /* Weißer Rahmen */
+            padding: 20px; /* Innenabstand */
+            border-radius: 8px; /* Abgerundete Ecken */
+            width: 300px; /* Feste Breite */
+        }
+        #stay-motivated {
+            font-size: 1.5em; /* Größere Schrift für die Überschrift */
+            margin-bottom: 10px; /* Abstand nach unten */
+        }
     </style>
 </head>
 <body>
     <h1>Auswertung</h1>
-    <canvas id="myPieChart"></canvas>
+    <div style="display: flex; align-items: center;">
+        <canvas id="myPieChart"></canvas>
+        <div id="quote-container">
+            <div id="stay-motivated">Bleib dran!</div>
+            <p>
+                "Der Schlüssel zum Erfolg ist, anzufangen." – Mark Twain
+            </p>
+        </div>
+    </div>
     <button id="back-button" onclick="location.href='index.html'">Zurück zur To-Do-Liste</button>
 
     <script>
-        // Funktion, um die Anzahl der erledigten und unerledigten Aufgaben zu zählen
         function getTasksCount() {
             const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
             let doneCount = 0;
@@ -62,14 +80,12 @@
             return { doneCount, undoneCount };
         }
 
-        // Daten für das Kuchendiagramm vorbereiten
         function updateChart(chart) {
             const { doneCount, undoneCount } = getTasksCount();
             chart.data.datasets[0].data = [doneCount, undoneCount];
             chart.update();
         }
 
-        // Chart.js initialisieren
         const ctx = document.getElementById('myPieChart').getContext('2d');
         const myPieChart = new Chart(ctx, {
             type: 'pie',
@@ -86,7 +102,6 @@
             }
         });
 
-        // Aktualisierung des Diagramms beim Laden der Seite
         updateChart(myPieChart);
     </script>
 </body>
