@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auswertung</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #333; /* Dunkler Hintergrund */
+            color: #fff; /* Helle Schriftfarbe */
+            font-family: Arial, sans-serif; /* Schriftart */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Nach oben ausrichten */
+            padding-top: 20px; /* Abstand von oben */
+            height: 100vh; /* Höhe 100% des Viewports */
+            margin: 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em; /* Größe der Überschrift */
+            margin: 0 0 20px; /* Entferne oberen Rand, falls vorhanden */
+        }
+        canvas {
+            max-width: 600px; /* Maximale Breite des Diagramms */
+            height: 300px; /* Feste Höhe für das Diagramm */
+            margin: 20px; /* Abstand */
+        }
+        #back-button {
+            margin-top: 20px; /* Abstand nach oben */
+            padding: 10px 20px; /* Innenabstand */
+            background-color: #4CAF50; /* Grüner Hintergrund */
+            color: white; /* Schriftfarbe */
+            border: none; /* Ohne Rahmen */
+            border-radius: 5px; /* Abgerundete Ecken */
+            cursor: pointer; /* Zeiger bei Hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Auswertung</h1>
+    <canvas id="myPieChart"></canvas>
+    <button id="back-button" onclick="location.href='index.html'">Zurück zur To-Do-Liste</button>
+
+    <script>
+        // Funktion, um die Anzahl der erledigten und unerledigten Aufgaben zu zählen
+        function getTasksCount() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            let doneCount = 0;
+            let undoneCount = 0;
+
+            tasks.forEach(task => {
+                if (task.done) {
+                    doneCount++;
+                } else {
+                    undoneCount++;
+                }
+            });
+
+            return { doneCount, undoneCount };
+        }
+
+        // Daten für das Kuchendiagramm vorbereiten
+        function updateChart(chart) {
+            const { doneCount, undoneCount } = getTasksCount();
+            chart.data.datasets[0].data = [doneCount, undoneCount];
+            chart.update();
+        }
+
+        // Chart.js initialisieren
+        const ctx = document.getElementById('myPieChart').getContext('2d');
+        const myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Erledigt', 'Nicht erledigt'],
+                datasets: [{
+                    data: [0, 0], // Vorläufige Werte
+                    backgroundColor: ['#4CAF50', '#F44336'], // Grün für erledigt, Rot für unerledigt
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Aktualisierung des Diagramms beim Laden der Seite
+        updateChart(myPieChart);
+    </script>
+</body>
+</html>

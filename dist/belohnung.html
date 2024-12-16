@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belohnung</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <h1>Herzlichen Glückwunsch!</h1>
+        <p>Du hast eine Aufgabe erfolgreich erledigt!</p>
+        
+        <div id="reward-message">
+            <p>Super gemacht! Hier ist deine Belohnung:</p>
+            <p id="reward-text"></p>
+            <img src="belohnungs.gif" alt="Konfetti" id="confetti-image" style="display:none;"/>
+        </div>
+
+        <button id="back-button">Zurück zur To-Do-Liste</button>
+    </main>
+
+    <script>
+        const rewards = [
+            "Mach dir eine Tasse Tee oder Kaffee!",
+            "Nimm dir 5 Minuten Zeit für eine kurze Pause.",
+            "Schau dir ein lustiges Video an!",
+            "Belohne dich mit einem kleinen Snack!",
+            "Lies ein paar Seiten eines Buches!"
+        ];
+
+        // Wähle eine zufällige Belohnung aus
+        const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
+        document.getElementById('reward-text').textContent = randomReward;
+        document.getElementById('confetti-image').style.display = 'block';
+
+        // Button um zurück zur To-Do-Liste zu gehen
+        document.getElementById('back-button').addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

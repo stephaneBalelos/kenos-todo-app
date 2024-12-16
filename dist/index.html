@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-Liste</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #meditation-button {
+            margin-top: 20px; /* Abstand nach oben */
+            padding: 15px 30px; /* Innenabstand */
+            font-size: 1.5em; /* Schriftgröße */
+            background-color: #4CAF50; /* Grüner Hintergrund */
+            color: white; /* Schriftfarbe */
+            border: none; /* Ohne Rahmen */
+            border-radius: 5px; /* Abgerundete Ecken */
+            cursor: pointer; /* Zeiger bei Hover */
+        }
+
+        #meditation-tips {
+            display: none; /* Standardmäßig versteckt */
+            background-color: rgba(255, 255, 255, 0.1); /* Leichte Transparenz */
+            padding: 20px;
+            margin-top: 20px; /* Abstand nach oben */
+            border-radius: 8px; /* Abgerundete Ecken */
+        }
+
+        .tip {
+            margin-bottom: 10px; /* Abstand zwischen Tipps */
+        }
+
+        .done {
+            text-decoration: line-through; /* Durchgestrichen */
+            color: red; /* Rote Schrift für erledigte Aufgaben */
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1 class="center">To-Do-Liste</h1>
+        <div class="menu-container">
+            <a href="tips.html">Tipps</a>
+            <a href="evaluation.html">Auswertung</a>
+        </div>
+        <section id="todo-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Check</th>
+                        <th>To-Do</th>
+                        <th>Erledigt</th>
+                    </tr>
+                </thead>
+                <tbody id="task-list">
+                </tbody>
+            </table>
+            <div class="left">
+                <input type="text" id="new-task" placeholder="Neue Aufgabe">
+                <button id="add-task">+</button>
+            </div>
+            <div id="weekly-challenge">
+                <label for="challenge-input">Wochenchallenge:</label>
+                <input type="text" id="challenge-input" placeholder="Deine Wochenchallenge">
+                <input type="checkbox" id="challenge-done"> Erledigt
+                <img src="confetti.gif" alt="Confetti" id="confetti-image" style="display:none;">
+            </div>
+            <button id="meditation-button">Ich möchte Abschalten</button>
+            <div id="meditation-tips">
+                <h2>Meditationsanleitung</h2>
+                <p class="tip">1. Setze dich an einen ruhigen Ort und schließe die Augen.</p>
+                <p class="tip">2. Atme tief ein und aus, konzentriere dich auf deinen Atem.</p>
+                <p class="tip">3. Wenn deine Gedanken abschweifen, bringe deine Aufmerksamkeit sanft zurück zu deinem Atem.</p>
+                <p class="tip">4. Versuche, täglich 5-10 Minuten Zeit für die Meditation einzuplanen.</p>
+                <p class="tip">5. Du kannst auch geführte Meditationen in Apps oder online ausprobieren.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

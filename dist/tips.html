@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipps</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #333; /* Dunkler Hintergrund */
+            color: #fff; /* Helle Schriftfarbe */
+            font-family: Arial, sans-serif; /* Schriftart */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em; /* Größe der Überschrift */
+            margin-bottom: 20px; /* Abstand nach unten */
+        }
+        .tip-container {
+            border: 2px solid #fff; /* Weißer Rahmen um die Tipps */
+            padding: 20px;
+            width: 80%;
+            max-width: 600px; /* Maximale Breite */
+            background-color: rgba(255, 255, 255, 0.1); /* Leichte Transparenz */
+            border-radius: 8px; /* Abgerundete Ecken */
+            margin-bottom: 20px; /* Abstand nach unten */
+        }
+        #back-button {
+            margin-top: 20px; /* Abstand nach oben */
+            padding: 10px 20px; /* Innenabstand */
+            background-color: #4CAF50; /* Grüner Hintergrund */
+            color: white; /* Schriftfarbe */
+            border: none; /* Ohne Rahmen */
+            border-radius: 5px; /* Abgerundete Ecken */
+            cursor: pointer; /* Zeiger bei Hover */
+        }
+        #tip {
+            font-size: 1.5em; /* Größe des Tipps */
+            margin: 20px 0; /* Abstand */
+        }
+        /* Stil für den Kontakt Hinweis */
+        #contact-info {
+            margin-top: 20px; /* Abstand nach oben */
+            font-size: 1.2em; /* Schriftgröße */
+        }
+    </style>
+</head>
+<body>
+    <h1>Tipps</h1>
+    <div class="tip-container">
+        <div id="tip">Klicke auf "Neuen Tipp", um einen Tipp anzuzeigen!</div>
+    </div>
+    <button id="new-tip-button">Neuer Tipp</button>
+    <button id="back-button" onclick="location.href='index.html'">Zurück zur To-Do-Liste</button>
+    
+    <!-- Kontaktinformation hinzufügen -->
+    <div id="contact-info">
+        Du möchtest mit jemandem über deine Sorgen persönlich sprechen? Ruf an unter: <strong>116 111</strong> (Nummer gegen Kummer)
+    </div>
+
+    <script>
+        const tips = [
+            "Mach regelmäßige Pausen.",
+            "Organisiere deine Aufgaben.",
+            "Setze dir realistische Ziele.",
+            "Suche dir Unterstützung bei anderen.",
+            "Vorbereitung auf schwierige Aufgaben kann helfen.",
+            "Vermeide Ablenkungen während der Arbeit.",
+            "Etablierte Routinen können helfen, fokussiert zu bleiben.",
+            "Gesunde Ernährung unterstützt die Konzentration.",
+            "Genügend Schlaf ist wichtig für die Leistungsfähigkeit.",
+            "Nimm dir Zeit für Hobbys und Entspannung."
+        ];
+
+        const newTipButton = document.getElementById('new-tip-button');
+        const tipElement = document.getElementById('tip');
+
+        newTipButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * tips.length);
+            tipElement.textContent = tips[randomIndex]; // Zufälligen Tipp anzeigen
+        });
+    </script>
+</body>
+</html>
